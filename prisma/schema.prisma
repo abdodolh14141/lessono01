@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -24,7 +23,7 @@ model User {
 }
 
 enum Role {
-  intern   
+  Intern   
   Engineer
   Admin
 }

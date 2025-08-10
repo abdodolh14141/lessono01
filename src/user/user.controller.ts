@@ -9,18 +9,18 @@ import {
   Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserCreateInput, UserUpdateInput } from '@prisma/client';
+import { Prisma, Role } from '@prisma/client';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: UserCreateInput) {
+  create(@Body() createUserDto: Prisma.UserCreateInput) {
     return this.userService.create(createUserDto);
   }
 
   @Get()
-  findAll(@Query('role') role?: 'Intern' | 'Engineer' | 'Admin') {
+  findAll(@Query('role') role?: Role) {
     return this.userService.findAll(role);
   }
 
@@ -30,7 +30,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UserUpdateInput) {
+  update(@Param('id') id: string, @Body() updateUserDto: Prisma.UserUpdateInput) {
     return this.userService.update(+id, updateUserDto);
   }
 
